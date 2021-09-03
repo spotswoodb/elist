@@ -1,5 +1,4 @@
 class PodcastService {
-
     constructor(endpoint){
         this.endpoint = endpoint
     }

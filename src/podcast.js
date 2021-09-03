@@ -3,7 +3,7 @@ class Podcast {
 
     static all = []
     static podcastsContainer = document.getElementById('podcasts-container')
-    const podcastForm = document.getElementById("form-container")
+    static podcastForm = document.getElementById('podcast-form-container')
 
     constructor({name, id}) {
         this.id = id
@@ -31,19 +31,17 @@ class Podcast {
     slapOnDom(){
         Podcast.podcastsContainer.append(this.podcastHTML())
         const podcastSpan = document.querySelector(`#podcast-${this.id} span`)
-        podcastSpan.addEventListener('click', PodcastService.toggleDiv)
+        podcastSpan.addEventListener('click', ContactService.toggleDiv)
     }
 
-    
+    static renderForm(){
+        Podcast.podcastForm.innerHTML += `
+            <form id="new-podcast-form">
+                Podcast Name: <input type='text' id='name'>
+                <input type='submit' id='create'>
+            </form>
+        `
+        document.querySelector('#new-podcast-form').addEventListener('submit', PodcastService.createPodcast)   
+    }
 
-//     static renderForm(){
-//         Journal.journalForm.innerHTML += `
-//             <form id="new-journal-form" class="font-serif p-4">
-//                 Journal Name: <input type="text" id="name" class="border font-serif">
-//                 <input type="submit" id="create">
-//             </form>
-//         `
-//         document.querySelector(`#new-journal-form`).addEventListener('submit', JournalService.createJournal)
-//     }
-
-// }
+}   
